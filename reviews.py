@@ -1,5 +1,3 @@
-import sys
-
 def reviewsgen(contents):
 	outfile = open("reviews.txt", "w")
 	
@@ -23,7 +21,6 @@ def reviewsgen(contents):
 			value = value.replace("\"", "&quot;")
 			value = value.replace("\\","\\\\")
 			if quotes:
-				print("writing quotes")
 				outfile.write("\"")
 				
 			outfile.write(value)
@@ -40,5 +37,6 @@ def reviewsgen(contents):
 	outfile.close()
 	
 if __name__ == "__main__":
+	import sys
 	contents = sys.stdin.read()
 	reviewsgen(contents)
