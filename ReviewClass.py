@@ -6,7 +6,8 @@ class Review:
 	profileName = ""
 	helpfulness = ""
 	score = 0
-	time = 0
+	secs = 0
+	time = ""
 	reviewSummary = ""
 	reviewText = ""
 	
@@ -21,6 +22,7 @@ class Review:
 		profileName,
 		helpfulness,
 		score,
-		time,
+		secs,
 		reviewSummary,
 		reviewText) = data
+		time = datetime.datetime.fromtimestamp(secs)
