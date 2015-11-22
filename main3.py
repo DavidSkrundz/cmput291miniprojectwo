@@ -25,6 +25,7 @@ if __name__ == "__main__":
 		rw = db.DB()
 		rw.open("rw.idx", None, db.DB_HASH, db.DB_CREATE)
 		for line in reviewsFile:
+			line = line.split("\n")[0]
 			parts = line.split(",", 1)
 			index = parts[0]
 			data = parts[1]
@@ -36,6 +37,7 @@ if __name__ == "__main__":
 		rw.set_flags(db.DB_DUP)
 		rw.open("pt.idx", None, db.DB_BTREE, db.DB_CREATE)
 		for line in ptermFile:
+			line = line.split("\n")[0]
 			parts = line.split(",", 1)
 			index = parts[0]
 			data = parts[1]
@@ -47,6 +49,7 @@ if __name__ == "__main__":
 		rw.set_flags(db.DB_DUP)
 		rw.open("rt.idx", None, db.DB_BTREE, db.DB_CREATE)
 		for line in rtermFile:
+			line = line.split("\n")[0]
 			parts = line.split(",", 1)
 			index = parts[0]
 			data = parts[1]
@@ -58,6 +61,7 @@ if __name__ == "__main__":
 		rw.set_flags(db.DB_DUP)
 		rw.open("sc.idx", None, db.DB_BTREE, db.DB_CREATE)
 		for line in scoresFile:
+			line = line.split("\n")[0]
 			parts = line.split(",", 1)
 			index = parts[0]
 			data = parts[1]
