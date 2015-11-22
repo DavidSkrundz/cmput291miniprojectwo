@@ -9,6 +9,8 @@
 #stuff -- matches stuff in pterms or rterms and returns the correct review numbers (rterms or pterms index)
 import re
 
+from ReviewClass import Review
+
 from bsddb3 import db
 
 def askForQuery():
@@ -21,7 +23,7 @@ def askForQuery():
 		query = re.sub("\\s+", " ", query)
 		query = re.sub("\\s*>\\s*", ">", query)
 		query = re.sub("\\s*<\\s*", "<", query)
-		print(query)
+#		print(query)
 
 		requirements = query.split(" ")
 		#run the query
@@ -52,6 +54,7 @@ def runQuery(requirements):
 		else:
 			genTerms.append(requirement.lower())
 
+
 #Make sure we have at least one indexed column
 	if not pTerms and not rTerms and not genTerms and not rScore:
 		print("Your query could not be run, please include an indexed requirement.")
@@ -72,8 +75,15 @@ def runQuery(requirements):
 	for set in allSets:
 		allThings = allThings & set
 
+# TODO PRINT THINGS
+	database = db.DB()
+	database.open("rw.idx")
+	for id in allThings:
+		review = Review(database.get(id.encode()).decode())
+		if review.validatedate(rDate) and review.validateprice(pPrice):
+			print(review)
+	database.close()
 
-	return allThings
 #Eldritch fucking magic
 def getGenTerms(terms):
 	indices = set()

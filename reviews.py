@@ -20,6 +20,7 @@ def reviewsgen(contents):
 			value = vals[1]
 			value = value.replace("\"", "&quot;")
 			value = value.replace("\\","\\\\")
+			value = value.replace(",", "&com;")
 			if quotes:
 				outfile.write("\"")
 				
