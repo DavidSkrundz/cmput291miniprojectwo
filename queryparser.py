@@ -38,11 +38,11 @@ def runQuery(requirements):
 		elif requirement.startswith("rdate"):
 			rDate.append(requirement[5:])
 		elif requirement.startswith("p:"):
-			pTerms.append(requirement[2:])
+			pTerms.append(requirement[2:].lower())
 		elif requirement.startswith("r:"):
-			rTerms.append(requirement[2:])
+			rTerms.append(requirement[2:].lower())
 		else:
-			genTerms.append(requirement)
+			genTerms.append(requirement.lower())
 
 	if not pTerms and not rTerms and not genTerms and not rScore:
 		print("Your query could not be run, please include an indexed requirement.")
